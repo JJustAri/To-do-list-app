@@ -30,7 +30,7 @@ Ce projet est une application de To-Do List permettant aux utilisateurs d'ajoute
 ``` git clone https://github.com/JJustAri/To-do-list-app.git ```
 
 2. Accéder au dossier
-` cd todo-list `
+` cd To-do-list-app `
 
 3. Ouvrir le fichier `index.html` dans un navigateur
 
