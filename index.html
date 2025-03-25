@@ -11,13 +11,35 @@
 </head>
 
 <body>
-    <!-- <canvas></canvas> -->
+    <canvas></canvas>
     <div class="d-flex flex-column align-items-center justify-content-center min-vh-100 gap-5">
-        <h1 class="h1 fs-1"> To-Do List</h1>
+        <h1 class="h1"> To-Do List</h1>
         <div id="container" class="todolist_container">
-            <div id="toDo" class="box"></div>
-            <div id="doing" class="box"></div>
-            <div id="done" class="box"></div>
+            <div id="toDo" class="box">
+                <div>
+                    <h2 class="text-center p-4 text-light">To-Do</h2>
+                    <div id="todoTaskArea">
+
+                    </div>
+                </div>
+            </div>
+            <div id="doing" class="box">
+                <div>
+
+                    <h2 class="text-center p-4 text-light">Doing</h2>
+                    <div id="doingTaskArea">
+
+                    </div>
+                </div>
+            </div>
+            <div id="done" class="box">
+                <div>
+                    <h2 class="text-center p-4 text-light">Done !</h2>
+                    <div id="doneTaskArea">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
