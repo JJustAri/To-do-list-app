@@ -11,32 +11,42 @@
 </head>
 
 <body>
-    <canvas></canvas>
+    <!-- <canvas></canvas> -->
     <div class="d-flex flex-column align-items-center justify-content-center min-vh-100 gap-5">
         <h1 class="h1"> To-Do List</h1>
         <div id="container" class="todolist_container">
             <div id="toDo" class="box">
                 <div>
-                    <h2 class="text-center p-4 text-light">To-Do</h2>
-                    <div id="todoTaskArea">
+                    <h2 class="text-center p-3 text-light">To-Do</h2>
 
+                    <div id="todoTaskArea" class="dropArea" dropzone="move">
+                        <p class="dragable" style="color: aliceblue;" draggable="true"> TEST</p>
                     </div>
                 </div>
             </div>
             <div id="doing" class="box">
-                <div>
-
-                    <h2 class="text-center p-4 text-light">Doing</h2>
-                    <div id="doingTaskArea">
+                <div class="d-flex flex-column justify-content-start">
+                    <h2 class="text-center p-3 text-light">Doing</h2>
+                    <div id="doingTaskArea" class="dropArea" dropzone="move">
+                        <p draggable="true" class="dragable">testzzzzzzzzz</p>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
 
                     </div>
                 </div>
             </div>
             <div id="done" class="box">
                 <div>
-                    <h2 class="text-center p-4 text-light">Done !</h2>
-                    <div id="doneTaskArea">
+                    <h2 class="text-center p-3 text-light">Done !</h2>
 
+                    <div id="doneTaskArea" dropzone="move" class="dropArea"> 
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
+                        <p>test</p>
                     </div>
                 </div>
             </div>

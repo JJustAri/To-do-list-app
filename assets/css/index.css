@@ -30,8 +30,29 @@ a:hover {
     color: #fff;
 }
 
-/* GLOBAL STYLE */
 
+
+
+/* Animation drag et drop */
+
+.draging {
+    opacity: 0.5;
+}
+
+.draging_border {
+    border: 2px solid rgb(0, 170, 255);
+    border-radius: 3%;
+}
+
+.border_enter {
+    border: 2px solid rgb(135, 240, 252);
+    transform: scale(1.05);
+}
+
+
+.dragable {
+    cursor: grab;
+}
 
 
 /* MAIN CONTENT */
@@ -60,4 +81,23 @@ a:hover {
     justify-content: center;
     align-items: center;
     gap: 5%;
+}
+
+/* Drop area */
+.dropArea {
+    max-width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #fff;
+}
+
+.dropArea p {
+    max-width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+    word-wrap: break-word;
 }
