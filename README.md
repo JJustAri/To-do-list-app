@@ -27,7 +27,7 @@ Ce projet est une application de To-Do List permettant aux utilisateurs d'ajoute
 # 📂 Installation et Utilisation
 
 1. Cloner le projet
-``` git clone https://github.com/ton-profil/todo-list.git ```
+``` git clone https://github.com/JJustAri/To-do-list-app.git ```
 
 2. Accéder au dossier
 ` cd todo-list `
