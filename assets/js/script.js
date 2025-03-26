@@ -225,22 +225,22 @@ dropArea.forEach(Area => {
     Area.ondragleave = () => {
         Area.classList.remove('border_enter');
         
-    };
+    }
 
     // Lorsque l'élement est déposé dans une drop zone valide
     Area.ondrop = (e) => {
         e.preventDefault();
 
-        if (Area.children.length >= 7 ) { // On return si il ya trop de taches pour eviter que ca dépasse du container (amélioration possible)
+        if (Area.children.length >= 9 ) { // On return si il ya trop de taches pour eviter que ca dépasse du container (amélioration possible)
             alert('trop de taches')
             return;
         }
 
         let content = e.dataTransfer.getData("text/plain"); // Changement, on ne récupere plus le contenu de l'element mais l'id cette fois pour pouvoir le déplacer plus d'une fois
         let draggedElement = document.getElementById(content);
-
+        if (draggedElement) {
         e.target.appendChild(draggedElement);
-
+    }
     }
 })
 
@@ -252,7 +252,45 @@ function newLi() {
     li.classList.add('dragable');
     li.setAttribute('draggable', true);
     li.id = "tache" + taskID;
+    
+
+    li.ondragstart = (e) => {
+        e.dataTransfer.setData("text/plain", e.target.id); // probleme que j'ai eu, le nouvel enfant n'avait pas les evenements
+        li.classList.add('draging');                       // possiblité de refactorisation vu qu'il ya 0 taches au début -> mettre tout dans newLi
+        dropArea.forEach(Area => {
+            Area.classList.add('draging_border');
+        });
+    };
+
+    li.ondragend = () => {
+        li.classList.remove('draging');
+        dropArea.forEach(Area => {
+            Area.classList.remove('draging_border');
+            Area.classList.remove('border_enter');
+        });
+    };
 
     return li;
 }
 
+//Feature : Ajout d'une tache
+
+const form = document.querySelector('#addTaskForm');
+const inputForm = document.querySelector('#taskInputId');
+const todoArea = document.querySelector('#todoTaskArea');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let inputValue = inputForm.value;
+
+    if(!inputValue.trim()) {
+        alert('Entrez une tâche')
+        return;
+    }
+    
+    let child = newLi();
+    child.textContent = inputValue;
+    todoArea.appendChild(child);
+
+    form.reset();
+})
