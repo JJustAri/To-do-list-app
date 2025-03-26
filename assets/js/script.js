@@ -177,42 +177,11 @@
 // ondragover
 // ondrop
 
-// feature drag and drop 
+// Feature drag and drop 
+
 // On recupére tout les elements draggable ainsi que les zones de drop
 let drags = document.querySelectorAll('.dragable');
 let dropArea = document.querySelectorAll('.dropArea');
-
-
-// Début de l'action drag, on precise de que l'on va transferer et on y ajoute une classe pour 1. dynamiser la chose 2. pouvoir recuperer l'element plus tard
-drags.forEach(drag => {
-    drag.ondragstart = (e) => {
-        e.dataTransfer.setData("text/plain", e.target.id); // recupération de l'id  de l'élément drag (tres important par la suite)
-        drag.classList.add('draging');
-
-        dropArea.forEach(Area => {
-            Area.classList.add('draging_border');
-        });
-
-        deleteArea.classList.add('rotation');
-    };
-
-    drag.ondrop = (e) => {
-        e.preventDefault();
-        
-    }
-
-    // Apres que l'action de drop soit fini, on supprime les classe de style
-    drag.ondragend = () => {
-        drag.classList.remove('draging');
-
-        dropArea.forEach(Area => {
-            Area.classList.remove('draging_border');
-            Area.classList.remove('border_enter');
-        });
-
-        deleteArea.classList.remove('rotation')
-    };
-});
 
 // on enleve le comportement par défaut qui empeche de drop l'element
 dropArea.forEach(Area => {
@@ -250,10 +219,7 @@ dropArea.forEach(Area => {
 })
 
 // zone de suppréssion 
-// ondragenter
-// ondragleave
-// ondragover
-// ondrop
+
 let deleteArea = document.querySelector('#deleteArea');
 let trouNoir = document.querySelector('.trou_noir');
 
@@ -280,9 +246,9 @@ deleteArea.ondrop = (e) => {
     trouNoir.classList.remove('trou_noir_dragover')
 }
 
-deleteArea.ondragend = () => {
-    trouNoir.classList.remove('trou_noir_dragover')
-}
+// deleteArea.ondragend = () => {
+//     trouNoir.classList.remove('trou_noir_dragover')
+// }
 
 // fonction pour créer un nouvel enfant avec un id unique
 function newLi() {                         
@@ -293,21 +259,29 @@ function newLi() {
     li.setAttribute('draggable', true);
     li.id = "tache" + taskID;
     
-
+// Début de l'action drag, on recupere l'id de l'elment et on y ajoute une classe pour dynamiser l'action
     li.ondragstart = (e) => {
         e.dataTransfer.setData("text/plain", e.target.id); // probleme que j'ai eu, le nouvel enfant n'avait pas les evenements
-        li.classList.add('draging');                       // possiblité de refactorisation vu qu'il ya 0 taches au début -> mettre tout dans newLi
+        li.classList.add('draging');                       // possiblité de refactorisation vu qu'il ya 0 taches au début -> mettre tout dans newLi (edit: refactorisation faite)
         dropArea.forEach(Area => {
             Area.classList.add('draging_border');
         });
+        deleteArea.classList.add('rotation');
     };
 
+    li.ondrop = (e) => {
+        e.preventDefault();
+        
+    }
+
+    // Apres que l'action de drop soit fini, on supprime les classe de style
     li.ondragend = () => {
         li.classList.remove('draging');
         dropArea.forEach(Area => {
             Area.classList.remove('draging_border');
             Area.classList.remove('border_enter');
         });
+        deleteArea.classList.remove('rotation');
     };
 
     return li;
@@ -324,7 +298,11 @@ form.addEventListener('submit', function (e) {
     let inputValue = inputForm.value;
 
     if(!inputValue.trim()) {
-        alert('Entrez une tâche')
+        let alertEnterTask = document.getElementById('alertEnterTask');
+        alertEnterTask.removeAttribute('hidden');
+        setTimeout(() => {
+            alertEnterTask.setAttribute('hidden',"");
+        }, "5000");
         return;
     }
     

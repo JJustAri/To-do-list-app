@@ -12,6 +12,9 @@
 
 <body>
     <!-- <canvas></canvas> -->
+    <div id="alertEnterTask" class="alert alert-primary position-absolute" role="alert" hidden >
+        Veuillez entrer une tâche ! :)
+    </div>
     <div class="d-flex flex-column align-items-center justify-content-center min-vh-100 gap-5">
         <h1 class="h1"> To-Do List</h1>
         <div id="container" class="todolist_container">
@@ -20,7 +23,6 @@
                     <h2 class="text-center p-3 text-light align-self-center">To-Do</h2>
 
                     <ul id="todoTaskArea" class="dropArea" dropzone="move">
-                        <li class="dragable mw-100" style="color: aliceblue;" draggable="true" id="DragId"> TEST</li>
                     </ul>
                 </div>
             </div>

@@ -30,8 +30,11 @@ a:hover {
     color: #fff;
 }
 
-
-
+/* Alert */
+.alert {
+    top:5%;
+    left: 15%;
+}
 
 /* Animation drag et drop */
 
