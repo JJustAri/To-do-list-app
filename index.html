@@ -16,11 +16,11 @@
         <h1 class="h1"> To-Do List</h1>
         <div id="container" class="todolist_container">
             <div id="toDo" class="box">
-                <div>
-                    <h2 class="text-center p-3 text-light">To-Do</h2>
+                <div class="d-flex flex-column align-items-start">
+                    <h2 class="text-center p-3 text-light align-self-center">To-Do</h2>
 
                     <ul id="todoTaskArea" class="dropArea" dropzone="move">
-                        <li class="dragable" style="color: aliceblue;" draggable="true" id="DragId"> TEST</li>
+                        <li class="dragable mw-100" style="color: aliceblue;" draggable="true" id="DragId"> TEST</li>
                     </ul>
                 </div>
             </div>
@@ -42,9 +42,10 @@
                 </div>
             </div>
         </div>
-        <form id="addTaskForm" class="add_task_container gap-3 d-flex">
-            <input id="taskInputId" class="add_task_input" type="text" placeholder="Ajouter une tâche" maxlength="30" autocomplete="off">
+        <form id="addTaskForm" class="add_task_container gap-4 d-flex align-items-center">
+            <input id="taskInputId" class="add_task_input" type="text" placeholder="Ajouter une tâche" maxlength="28" autocomplete="off">
             <button type="submit" class="add_task_button"> Ajouter </button>
+            <div id="deleteArea" class="rotate_trou_noir" dropzone="move"><img class="trou_noir"  src="assets/image/trou-noir.png" alt="icone d'un trou noir" ></div>
         </form>
     </div>
 

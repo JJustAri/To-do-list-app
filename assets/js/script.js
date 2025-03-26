@@ -182,6 +182,7 @@
 let drags = document.querySelectorAll('.dragable');
 let dropArea = document.querySelectorAll('.dropArea');
 
+
 // Début de l'action drag, on precise de que l'on va transferer et on y ajoute une classe pour 1. dynamiser la chose 2. pouvoir recuperer l'element plus tard
 drags.forEach(drag => {
     drag.ondragstart = (e) => {
@@ -191,6 +192,8 @@ drags.forEach(drag => {
         dropArea.forEach(Area => {
             Area.classList.add('draging_border');
         });
+
+        deleteArea.classList.add('rotation');
     };
 
     drag.ondrop = (e) => {
@@ -206,6 +209,8 @@ drags.forEach(drag => {
             Area.classList.remove('draging_border');
             Area.classList.remove('border_enter');
         });
+
+        deleteArea.classList.remove('rotation')
     };
 });
 
@@ -244,6 +249,41 @@ dropArea.forEach(Area => {
     }
 })
 
+// zone de suppréssion 
+// ondragenter
+// ondragleave
+// ondragover
+// ondrop
+let deleteArea = document.querySelector('#deleteArea');
+let trouNoir = document.querySelector('.trou_noir');
+
+deleteArea.ondragenter = () => {
+    trouNoir.classList.add('trou_noir_dragover')
+}
+
+deleteArea.ondragover = (e) => {
+    e.preventDefault();
+}
+
+deleteArea.ondragleave = () => {
+    trouNoir.classList.remove('trou_noir_dragover')
+}
+
+deleteArea.ondrop = (e) => {
+    e.preventDefault()
+    let content = e.dataTransfer.getData("text/plain"); 
+    let draggedElement = document.getElementById(content);
+
+    if(draggedElement) {
+    draggedElement.remove();
+}
+    trouNoir.classList.remove('trou_noir_dragover')
+}
+
+deleteArea.ondragend = () => {
+    trouNoir.classList.remove('trou_noir_dragover')
+}
+
 // fonction pour créer un nouvel enfant avec un id unique
 function newLi() {                         
     let li = document.createElement('li');
@@ -275,7 +315,7 @@ function newLi() {
 
 //Feature : Ajout d'une tache
 
-const form = document.querySelector('#addTaskForm');
+const form = document.querySelector('#addTaskForm');  // récupération du formulaire et de ses éléments
 const inputForm = document.querySelector('#taskInputId');
 const todoArea = document.querySelector('#todoTaskArea');
 
