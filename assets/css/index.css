@@ -101,3 +101,45 @@ a:hover {
     margin-right: 5%;
     word-wrap: break-word;
 }
+
+#doneTaskArea li{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* Add task */
+
+.add_task_button {
+    width: 8vw;
+    height: 5vh;
+    border: 1px solid rgb(11, 11, 72);
+    border-radius: 50px;
+    background-size: 300% 100%!important;
+    background: linear-gradient(130deg, rgba(121,68,154,0.9) 21%, rgba(87,128,196,1) 60%, rgba(35, 232, 225, 0.9) 100%);
+    background-position: left center!important;
+    background-repeat: no-repeat;
+    transition: background 0.8s ease, transform 0.3s ease;
+    box-shadow: rgba(113, 125, 255,0.50) 0px 0px 20px;
+    color: rgb(255, 255, 255);
+}
+
+.add_task_button:hover {
+    transform: scale(1.1)!important;
+    background-position: right!important;
+}
+
+.add_task_input {
+    color: white;
+    background-color:rgba(113, 125, 255,0.50);
+    border: 1px solid black;
+    border-radius: 5px
+}
+
+.add_task_input::placeholder {
+    padding-left: 5%;
+    color: rgba(255, 255, 255, 0.737);
+}
+
+.add_task_input:focus {
+
+}

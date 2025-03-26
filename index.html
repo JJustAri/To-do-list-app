@@ -19,39 +19,44 @@
                 <div>
                     <h2 class="text-center p-3 text-light">To-Do</h2>
 
-                    <div id="todoTaskArea" class="dropArea" dropzone="move">
-                        <p class="dragable" style="color: aliceblue;" draggable="true" id="DragId"> TEST</p>
-                    </div>
+                    <ul id="todoTaskArea" class="dropArea" dropzone="move">
+                        <li class="dragable" style="color: aliceblue;" draggable="true" id="DragId"> TEST</li>
+                    </ul>
                 </div>
             </div>
             <div id="doing" class="box">
                 <div class="d-flex flex-column justify-content-start">
                     <h2 class="text-center p-3 text-light">Doing</h2>
-                    <div id="doingTaskArea" class="dropArea" dropzone="move">
+                    <ul id="doingTaskArea" class="dropArea" dropzone="move">
                         <p draggable="true" class="dragable">testzzzzzzzzz</p>
                         <p>test</p>
                         <p>test</p>
                         <p>test</p>
                         <p>test</p>
 
-                    </div>
+                    </ul>
                 </div>
             </div>
             <div id="done" class="box">
                 <div>
                     <h2 class="text-center p-3 text-light">Done !</h2>
 
-                    <div id="doneTaskArea" dropzone="move" class="dropArea"> 
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                        <p>test</p>
-                    </div>
+                    <ul id="doneTaskArea" dropzone="move" class="dropArea"> 
+                        <li><del>test</del></li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="add_task_container gap-3 d-flex">
+            <input id="taskInputId" class="add_task_input" type="text" placeholder="Ajouter une tâche" maxlength="25" autocomplete="off">
+            <button type="submit" class="add_task_button"> Ajouter </button>
+        </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
