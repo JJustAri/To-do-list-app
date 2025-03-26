@@ -185,7 +185,7 @@ let dropArea = document.querySelectorAll('.dropArea');
 // Début de l'action drag, on precise de que l'on va transferer et on y ajoute une classe pour 1. dynamiser la chose 2. pouvoir recuperer l'element plus tard
 drags.forEach(drag => {
     drag.ondragstart = (e) => {
-        e.dataTransfer.setData("text/plain", drag.textContent);
+        e.dataTransfer.setData("text/plain", e.target.id); // recupération de l'id  de l'élément drag (tres important par la suite)
         drag.classList.add('draging');
 
         dropArea.forEach(Area => {
@@ -231,25 +231,17 @@ dropArea.forEach(Area => {
     Area.ondrop = (e) => {
         e.preventDefault();
 
-        if (Area.children.length >= 7 ) {
+        if (Area.children.length >= 7 ) { // On return si il ya trop de taches pour eviter que ca dépasse du container (amélioration possible)
             alert('trop de taches')
             return;
         }
 
-        let content = e.dataTransfer.getData("text/plain");
-        let draggedElement = document.querySelector('.draging');
+        let content = e.dataTransfer.getData("text/plain"); // Changement, on ne récupere plus le contenu de l'element mais l'id cette fois pour pouvoir le déplacer plus d'une fois
+        let draggedElement = document.getElementById(content);
 
+        e.target.appendChild(draggedElement);
 
-        if (draggedElement) {
-            let newElement = document.createElement("p");
-            newElement.classList.add("dragable");
-            newElement.setAttribute("draggable", "true");
-            newElement.textContent = draggedElement.textContent;
-
-            Area.appendChild(newElement);
-            draggedElement.remove();
-
-    }
+        console.log(content)
     }
 })
 
