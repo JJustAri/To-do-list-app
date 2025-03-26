@@ -241,8 +241,18 @@ dropArea.forEach(Area => {
 
         e.target.appendChild(draggedElement);
 
-        console.log(content)
     }
 })
 
+// fonction pour créer un nouvel enfant avec un id unique
+function newP() {                         
+    let p = document.createElement('p');
+    let taskID = Date.now().toString();
+
+    p.classList.add('dragable');
+    p.setAttribute('draggable', true);
+    p.id = "tache" + taskID;
+
+    return p;
+}
 
