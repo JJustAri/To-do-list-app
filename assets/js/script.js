@@ -180,7 +180,7 @@ function movePointer(x, y) {
 // Feature drag and drop 
 
 // On recupére tout les elements draggable ainsi que les zones de drop
-let drags = document.querySelectorAll('.dragable');
+let drags = document.querySelectorAll('.dragable, dragable_doing, dragable_done');
 let dropArea = document.querySelectorAll('.dropArea');
 
 // on enleve le comportement par défaut qui empeche de drop l'element
@@ -218,6 +218,30 @@ dropArea.forEach(Area => {
 
         let content = e.dataTransfer.getData("text/plain"); // Changement, on ne récupere plus le contenu de l'element mais l'id cette fois pour pouvoir le déplacer plus d'une fois
         let draggedElement = document.getElementById(content);
+
+        // on attribut une classe a l'element selon ou il est drop, cela permettra de mieux le ranger dans le localstorage
+        if(e.target.id == "todoTaskArea") {  
+
+        draggedElement.classList.add('dragable');
+          draggedElement.classList.remove('dragable_doing');
+          draggedElement.classList.remove('dragable_done');
+        }
+        
+        if(e.target.id == "doingTaskArea") {
+          
+          draggedElement.classList.add('dragable_doing');
+          draggedElement.classList.remove('dragable');
+          draggedElement.classList.remove('dragable_done');
+        }
+
+        if(e.target.id == "doneTaskArea") {
+          
+          draggedElement.classList.add('dragable_done');
+          draggedElement.classList.remove('dragable_doing');
+          draggedElement.classList.remove('dragable');
+        }
+
+        
         if (draggedElement) {
         e.target.appendChild(draggedElement);
     }
@@ -264,7 +288,7 @@ function newLi() {
 // Début de l'action drag, on recupere l'id de l'elment et on y ajoute une classe pour dynamiser l'action
     li.ondragstart = (e) => {
         e.dataTransfer.setData("text/plain", e.target.id); // probleme que j'ai eu, le nouvel enfant n'avait pas les evenements
-        li.classList.add('draging');                       // possiblité de refactorisation vu qu'il ya 0 taches au début -> mettre tout dans newLi (edit: refactorisation faite)
+        li.classList.add('draging');                      // possiblité de refactorisation vu qu'il ya 0 taches au début -> mettre tout dans newLi (edit: refactorisation faite)
         dropArea.forEach(Area => {
             Area.classList.add('draging_border');
         });
@@ -272,6 +296,7 @@ function newLi() {
     };
 
     li.ondrop = (e) => {
+      console.log('drop délanché')
         e.preventDefault();
         
     }
@@ -332,3 +357,81 @@ form.addEventListener('submit', function (e) {
     
     form.reset();
 })
+
+
+// sauvegarde dans le local storage
+const doingArea = document.getElementById('doingTaskArea');
+const doneArea = document.getElementById('doneTaskArea');
+
+//fonction de sauvegarde
+function saveTasks() {
+  let tasksTodo = document.querySelectorAll(".dragable");
+  let tasksDoing = document.querySelectorAll(".dragable_doing");
+  let tasksDone = document.querySelectorAll(".dragable_done");
+
+  let taskListTodo = [];  // on crée un tableau pour "etat" pour les replacer au bon endroit lors du load
+  let taskListDoing = [];
+  let taskListDone = [];
+
+  tasksTodo.forEach(task => {    // on range dans le bon tableau selon sa classe (voir ligne 222 pour la gestion des classes)
+      taskListTodo.push(task.textContent);  
+  });
+
+  tasksDoing.forEach(task => {
+      taskListDoing.push(task.textContent);
+  });
+
+  tasksDone.forEach(task => {
+      taskListDone.push(task.textContent);
+  });
+  
+  // convertion de l'objet en string car localstorage ne peut stocker que des strings
+  localStorage.setItem("tasksTodo", JSON.stringify(taskListTodo)); 
+  localStorage.setItem("taskDoing", JSON.stringify(taskListDoing));
+  localStorage.setItem("taskDone", JSON.stringify(taskListDone));
+
+};
+
+// fonction de chargement des taches (déclanché a l'ouverture de l'application)
+function loadTasks() {
+
+  // récupération de nos taches dans le local storage
+  let contentTodo = localStorage.getItem("tasksTodo");
+  let contentDoing = localStorage.getItem("tasksDoing");
+  let contentDone = localStorage.getItem("tasksDone");
+
+  // on les repasse en string puis on les remets (on recrée puis ajoute un textcontent) dans la bonne zone
+  if (contentTodo) {
+    let loadTaskListTodo = JSON.parse(contentTodo);
+    loadTaskListTodo.forEach(taskText => {
+        let child = newLi();
+        child.textContent = taskText;
+        todoArea.appendChild(child);
+    });
+}
+
+
+if (contentDoing) {
+  let loadTaskListDoing = JSON.parse(contentDoing);
+  loadTaskListDoing.forEach(taskText => {
+      let child = newLi();
+      child.textContent = taskText;
+      doingArea.appendChild(child);
+  });
+}
+
+if (contentDone) {
+  let loadTaskListDone = JSON.parse(contentDone);
+  loadTaskListDone.forEach(taskText => {
+      let child = newLi();
+      child.textContent = taskText;
+      doneArea.appendChild(child);
+  });
+}
+}
+
+// fonction pour supprimer tout les données du localstorage (bouton reset)
+function clearTasks() {
+
+  localStorage.clear();
+};

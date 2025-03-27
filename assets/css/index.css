@@ -56,7 +56,7 @@ a:hover {
 }
 
 
-.dragable {
+.dragable, .dragable_doing, .dragable_done {
     cursor: grab;
 }
 
