@@ -271,8 +271,32 @@ deleteArea.ondrop = (e) => {
     e.preventDefault()
     let content = e.dataTransfer.getData("text/plain"); 
     let draggedElement = document.getElementById(content);
+    console.log("Element déplacé pour suppression : ", draggedElement);
 
-    if(draggedElement) {
+    if (draggedElement) {
+      // Vérifier où se trouve l'élément (quelle classe il a) pour déterminer sa liste dans le localStorage
+      let parentList = "";
+
+      if (draggedElement.classList.contains('dragable')) {
+          parentList = "tasksTodo";  
+      } else if (draggedElement.classList.contains('dragable_doing')) {
+          parentList = "tasksDoing";  
+      } else if (draggedElement.classList.contains('dragable_done')) {
+          parentList = "tasksDone"; 
+      }
+      
+
+      if (parentList) {
+          let storedTasks = JSON.parse(localStorage.getItem(parentList)) || [];
+          let taskText = draggedElement.textContent.trim();
+
+          // filter garde dans un nouveau tableau tout les elements qui respecte la condition (donc tasktext est supprimé)
+          let newTasks = storedTasks.filter(task => task !== taskText);
+
+          // Mise à jour de localStorage
+          localStorage.setItem(parentList, JSON.stringify(newTasks));
+
+      }
     draggedElement.remove();
 }
     trouNoir.classList.remove('trou_noir_dragover')
