@@ -185,8 +185,36 @@ a:hover {
 /* Checkbox */
 
 .checkbox_container {
+    position: fixed;
+    right: 3.5%;
+    bottom: 32%;
     align-items: center;
     background-color: rgba(113, 125, 255, 0.50);
     width: 8%;
     border-radius: 5%;
+}
+
+ /* Save / Reset  */
+
+.manage_container {
+    bottom: 50%;
+    right: 3%;
+}
+
+.manage_button {
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    background-size: 300% 100% !important;
+    background: linear-gradient(130deg, rgba(121, 68, 154, 0.9) 21%, rgba(87, 128, 196, 1) 60%, rgba(35, 232, 225, 0.9) 100%);
+    background-position: left center !important;
+    background-repeat: no-repeat;
+    transition: background 0.8s ease, transform 0.3s ease;
+    box-shadow: rgba(113, 125, 255, 0.50) 0px 0px 20px;
+    padding:5px 10px;
+}
+
+.manage_button:hover {
+    transform: scale(1.1) !important;
+    background-position: right !important;
 }

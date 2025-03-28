@@ -1,3 +1,5 @@
+
+
 const STAR_COLOR = "#fff";
 const STAR_SIZE = 3;
 const STAR_MIN_SCALE = 0.2;
@@ -296,7 +298,6 @@ function newLi() {
     };
 
     li.ondrop = (e) => {
-      console.log('drop délanché')
         e.preventDefault();
         
     }
@@ -387,10 +388,16 @@ function saveTasks() {
   
   // convertion de l'objet en string car localstorage ne peut stocker que des strings
   localStorage.setItem("tasksTodo", JSON.stringify(taskListTodo)); 
-  localStorage.setItem("taskDoing", JSON.stringify(taskListDoing));
-  localStorage.setItem("taskDone", JSON.stringify(taskListDone));
-
+  localStorage.setItem("tasksDoing", JSON.stringify(taskListDoing));
+  localStorage.setItem("tasksDone", JSON.stringify(taskListDone));
 };
+
+let saveButton = document.getElementById('saveButton');
+
+addEventListener('click', function() {
+
+  saveTasks();
+});
 
 // fonction de chargement des taches (déclanché a l'ouverture de l'application)
 function loadTasks() {
@@ -430,11 +437,29 @@ if (contentDone) {
 }
 }
 
+loadTasks();
+
+
+
 // fonction pour supprimer tout les données du localstorage (bouton reset)
+
 function clearTasks() {
 
   localStorage.clear();
+
 };
+
+let deleteButton = document.getElementById('deleteButton');
+
+deleteButton.addEventListener('click', function() {
+
+  clearTasks();
+
+  todoArea.replaceChildren();
+  doingArea.replaceChildren();
+  doneArea.replaceChildren();
+
+});
 
 
 // affichage des taches Todo // Doing // Done avec checkbox             
