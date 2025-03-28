@@ -1,0 +1,220 @@
+body {
+    font-family: "Quicksand", sans-serif;
+    max-width: 100%;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent),
+        radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)
+}
+
+/* CANVAS */
+
+canvas {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+a {
+    position: absolute;
+    bottom: 2vmin;
+    right: 2vmin;
+    color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* Alert */
+.alert {
+    top:5%;
+    left: 15%;
+}
+
+/* Animation drag et drop */
+
+.draging {
+    opacity: 0.5;
+}
+
+.draging_border {
+    border: 2px solid rgb(0, 170, 255);
+    border-radius: 3%;
+}
+
+.border_enter {
+    border: 2px solid rgb(135, 240, 252);
+    transform: scale(1.05);
+}
+
+
+.dragable, .dragable_doing, .dragable_done {
+    cursor: grab;
+}
+
+
+/* MAIN CONTENT */
+
+.h1 {
+    color: #fff;
+    font-size: 3rem !important;
+
+}
+
+.box {
+    border-radius: 5%;
+    box-sizing: border-box;
+    background-color: #000000;
+    width: 20%;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(41, 196, 255, 0.13) 10%, rgba(105, 71, 164, 0.13) 68%);
+    box-shadow: rgba(113, 125, 255, 0.1) 0px 1px 2px, rgba(113, 125, 255, 0.07) 0px 2px 4px, rgba(113, 125, 255, 0.07) 0px 4px 8px, rgba(113, 125, 255, 0.07) 0px 8px 16px, rgba(113, 125, 255, 0.07) 0px 16px 32px, rgba(113, 125, 255, 0.07) 0px 32px 64px;
+
+}
+
+.todolist_container {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+/* Drop area */
+.dropArea {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 90%;
+    max-width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #fff;
+}
+
+.dropArea li {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+#doneTaskArea li {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* Add task */
+
+.add_task_button {
+    width: 8vw;
+    height: 5vh;
+    border: 1px solid rgb(11, 11, 72);
+    border-radius: 50px;
+    background-size: 300% 100% !important;
+    background: linear-gradient(130deg, rgba(121, 68, 154, 0.9) 21%, rgba(87, 128, 196, 1) 60%, rgba(35, 232, 225, 0.9) 100%);
+    background-position: left center !important;
+    background-repeat: no-repeat;
+    transition: background 0.8s ease, transform 0.3s ease;
+    box-shadow: rgba(113, 125, 255, 0.50) 0px 0px 20px;
+    color: rgb(255, 255, 255);
+}
+
+.add_task_button:hover {
+    transform: scale(1.1) !important;
+    background-position: right !important;
+}
+
+.add_task_input {
+    color: white;
+    height: 40px;
+    background-color: rgba(113, 125, 255, 0.50);
+    border: 1px solid black;
+    border-radius: 5px
+}
+
+.add_task_input::placeholder {
+    padding-left: 5%;
+    color: rgba(255, 255, 255, 0.737);
+}
+
+#deleteArea {
+    width: 50px;
+    height: auto;
+}
+
+.trou_noir {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.trou_noir_dragover {
+    transform: scale(1.3);
+}
+
+.rotation {
+    animation: rotation 2s linear infinite;
+
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+
+    }
+
+    to {
+        transform: rotate(360deg);
+
+    }
+}
+
+/* Checkbox */
+
+.checkbox_container {
+    position: fixed;
+    right: 3.5%;
+    bottom: 32%;
+    align-items: center;
+    background-color: rgba(113, 125, 255, 0.50);
+    width: 8%;
+    border-radius: 5%;
+}
+
+ /* Save / Reset  */
+
+.manage_container {
+    bottom: 50%;
+    right: 3%;
+}
+
+.manage_button {
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    background-size: 300% 100% !important;
+    background: linear-gradient(130deg, rgba(121, 68, 154, 0.9) 21%, rgba(87, 128, 196, 1) 60%, rgba(35, 232, 225, 0.9) 100%);
+    background-position: left center !important;
+    background-repeat: no-repeat;
+    transition: background 0.8s ease, transform 0.3s ease;
+    box-shadow: rgba(113, 125, 255, 0.50) 0px 0px 20px;
+    padding:5px 10px;
+}
+
+.manage_button:hover {
+    transform: scale(1.1) !important;
+    background-position: right !important;
+}
