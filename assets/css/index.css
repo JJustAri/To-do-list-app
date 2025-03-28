@@ -82,6 +82,7 @@ a:hover {
 
 .todolist_container {
     width: 100%;
+    min-height: 50vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -179,4 +180,13 @@ a:hover {
         transform: rotate(360deg);
 
     }
+}
+
+/* Checkbox */
+
+.checkbox_container {
+    align-items: center;
+    background-color: rgba(113, 125, 255, 0.50);
+    width: 8%;
+    border-radius: 5%;
 }

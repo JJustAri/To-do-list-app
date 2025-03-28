@@ -435,3 +435,31 @@ function clearTasks() {
 
   localStorage.clear();
 };
+
+
+// affichage des taches Todo // Doing // Done avec checkbox             
+
+// récupération
+let checkboxTodo = document.getElementById('checkboxInputTodo');
+let checkboxDoing = document.getElementById('checkboxInputDoing');
+let checkboxDone = document.getElementById('checkboxInputDone');
+
+let todoContainer = document.getElementById('todo');
+let doingContainer = document.getElementById('doing');
+let doneContainer = document.getElementById('done');
+
+// on cache / montre au click
+checkboxTodo.addEventListener('click', function () {
+
+    todoContainer.toggleAttribute('hidden');
+})
+
+checkboxDoing.addEventListener('click', function () {
+
+  doingContainer.toggleAttribute('hidden');
+})
+
+checkboxDone.addEventListener('click', function () {
+
+  doneContainer.toggleAttribute('hidden');
+})
