@@ -185,19 +185,16 @@ a:hover {
 /* Checkbox */
 
 .checkbox_container {
-    position: fixed;
-    right: 3.5%;
-    bottom: 32%;
     align-items: center;
     background-color: rgba(113, 125, 255, 0.50);
-    width: 8%;
+    width: 100%;
     border-radius: 5%;
 }
 
  /* Save / Reset  */
 
 .manage_container {
-    bottom: 50%;
+    bottom: 35%;
     right: 3%;
 }
 

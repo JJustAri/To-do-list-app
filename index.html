@@ -52,15 +52,16 @@
             <button type="submit" class="add_task_button"> Ajouter </button>
             <div id="deleteArea" class="rotate_trou_noir" dropzone="move"><img class="trou_noir"  src="assets/image/trou-noir.png" alt="icone d'un trou noir" ></div>
         </form>
-        <div class="d-flex flex-column gap-2 text-light checkbox_container p-3">
-        <label><input id="checkboxInputTodo" name="origin" type="checkbox" value="To-Do" checked/> To-Do</label>
-        <label><input id="checkboxInputDoing" name="origin" type="checkbox" value="Doing" checked/> Doing</label>
-        <label><input id="checkboxInputDone" name="origin" type="checkbox" value="Done" checked/> Done</label>
-    </div>
+        
     </div>
     <div class="manage_container position-fixed d-flex flex-column gap-4">
         <button id="saveButton" type="submit" class="button manage_button"> Sauvegarder </button>
         <button id="deleteButton" type="submit" class="button manage_button"> Tout supprimer </button>
+        <div class="d-flex flex-column gap-2 text-light checkbox_container p-3">
+            <label><input id="checkboxInputTodo" name="origin" type="checkbox" value="To-Do" checked/> To-Do</label>
+            <label><input id="checkboxInputDoing" name="origin" type="checkbox" value="Doing" checked/> Doing</label>
+            <label><input id="checkboxInputDone" name="origin" type="checkbox" value="Done" checked/> Done</label>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

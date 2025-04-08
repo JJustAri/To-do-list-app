@@ -295,7 +295,7 @@ deleteArea.ondrop = (e) => {
 
           // Mise à jour de localStorage
           localStorage.setItem(parentList, JSON.stringify(newTasks));
-
+  
       }
     draggedElement.remove();
 }
