@@ -295,7 +295,7 @@ deleteArea.ondrop = (e) => {
 
           // Mise à jour de localStorage
           localStorage.setItem(parentList, JSON.stringify(newTasks));
-
+  
       }
     draggedElement.remove();
 }
@@ -463,6 +463,42 @@ if (contentDone) {
 
 loadTasks();
 
+// Validation avant suppréssion
+const modal = document.getElementById('validateModal');
+const closeButton = document.getElementById('closeButton');
+const buttonYes = document.getElementById('validateModalYes');
+const buttonCancel = document.getElementById('validateModalNo');
+
+async function validateDelete() {
+
+  let validatePromise = new Promise(async(resolve) => {
+    
+    buttonYes.addEventListener('click', function () {
+
+      modal.setAttribute('hidden', '');
+      resolve(true);
+      
+    });
+
+    buttonCancel.addEventListener('click', function () {
+
+      modal.setAttribute('hidden', '');
+      resolve(false);
+      
+    });
+
+    closeButton.addEventListener('click', function() {
+
+      modal.setAttribute('hidden','');
+      resolve(false);
+      
+    })
+
+    
+  })
+
+  return await validatePromise;
+}
 
 
 // fonction pour supprimer tout les données du localstorage (bouton reset)
@@ -475,13 +511,20 @@ function clearTasks() {
 
 let deleteButton = document.getElementById('deleteButton');
 
-deleteButton.addEventListener('click', function() {
+deleteButton.addEventListener('click', async function() {
+
+  modal.removeAttribute('hidden');
+
+  let isValid = await validateDelete();
+
+  if(isValid) {
 
   clearTasks();
 
   todoArea.replaceChildren();
   doingArea.replaceChildren();
   doneArea.replaceChildren();
+}
 
 });
 
@@ -512,3 +555,6 @@ checkboxDone.addEventListener('click', function () {
 
   doneContainer.toggleAttribute('hidden');
 })
+
+
+
