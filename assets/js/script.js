@@ -4,6 +4,7 @@ import { newLi } from './modules/newLi.js';
 import { loadTasks } from './modules/loadTask.js';
 import { saveTasks } from './modules/saveTask.js';
 import * as deleteValidation from './modules/validateDelete.js'
+import { canvas } from './modules/canvasdark.js';
 
 // CANVAS DARK
 canvasdark.generate();
@@ -242,6 +243,31 @@ checkboxDone.addEventListener('click', function () {
 
   doneContainer.toggleAttribute('hidden');
 })
+
+// LIGHT & DARK MODE 
+
+let toggleInput = document.querySelectorAll("#inputToggleMode, .circle");
+let background = document.querySelector(".background_toggle");
+let circle = document.querySelector(".circle");
+
+
+let canClick = true;
+let inputToggle = document.querySelector("#inputToggleMode");
+const canvasLight = document.getElementById('canvasLight');
+const textsLight = document.querySelectorAll('p, h1, li')
+inputToggle.addEventListener("change", function () {
+  if (!canClick) return; // mise en place d'un setTimeout pour eviter les spam click et faire buger le code
+
+  canClick = false;
+  setTimeout(() => canClick = true, 1200);
+
+  circle.classList.toggle("circle_click");
+
+  canvas.toggleAttribute('hidden'); //changement de canvas selon le mode dark / light
+  canvasLight.toggleAttribute('hidden');
+
+});
+
 
 
 
