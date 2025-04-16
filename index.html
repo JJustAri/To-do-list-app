@@ -13,9 +13,9 @@
     <title>Projet To-Do-List</title>
 </head>
 
-<body>
+<body id="body">
     <canvas id="canvasDark"></canvas>
-    <canvas id="canvasLight" hidden></canvas>
+    <canvas id="canvasLight"></canvas>
     <div id="alertEnterTask" class="alert alert-primary position-absolute" role="alert" hidden>
 
     </div>
@@ -53,11 +53,13 @@
                 autocomplete="off">
             <button type="submit" class="add_task_button"> Ajouter </button>
             <div id="deleteArea" class="rotate_trou_noir" dropzone="move"><img class="trou_noir"
-                    src="assets/image/trou-noir.png" alt="icone d'un trou noir"></div>
-                    <label class="background_toggle">
-                        <div class="circle"></div>
-                        <input id="inputToggleMode" type="checkbox">
-                    </label>
+                    src="assets/image/trou-noir.png" alt="icone d'un trou noir">
+                    <img src="assets/image/soleil.png" alt="icone d'un soleil" class="trou_noir soleil d-none">
+            </div>
+            <label class="background_toggle">
+                <div class="circle"></div>
+                <input id="inputToggleMode" type="checkbox">
+            </label>
         </form>
 
     </div>
@@ -70,10 +72,11 @@
             <label><input id="checkboxInputDoing" name="origin" type="checkbox" value="Doing" checked /> Doing</label>
             <label><input id="checkboxInputDone" name="origin" type="checkbox" value="Done" checked /> Done</label>
         </div>
-        
+
     </div>
     <div id="validateModal" class="modal_delete align-items-center" hidden>
-        <div id="closeButton" class="align-self-end"><img src="assets/image/fermer.png" alt="bouton pour fermer le modal"></div>
+        <div id="closeButton" class="align-self-end"><img src="assets/image/fermer.png"
+                alt="bouton pour fermer le modal"></div>
         <div class="d-flex flex-column align-items-center gap-3">
             <p>Êtes vous sur de vouloir supprimer tout les éléments ?</p>
             <div class="d-flex gap-4">
@@ -82,7 +85,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

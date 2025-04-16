@@ -96,6 +96,7 @@ export let trouNoir = document.querySelector('.trou_noir');
 
 deleteArea.ondragenter = () => {
     trouNoir.classList.add('trou_noir_dragover')
+    soleil.classList.add('trou_noir_dragover')
 }
 
 deleteArea.ondragover = (e) => {
@@ -104,6 +105,7 @@ deleteArea.ondragover = (e) => {
 
 deleteArea.ondragleave = () => {
     trouNoir.classList.remove('trou_noir_dragover')
+    soleil.classList.remove('trou_noir_dragover')
 }
 
 deleteArea.ondrop = (e) => {
@@ -137,7 +139,8 @@ deleteArea.ondrop = (e) => {
       }
     draggedElement.remove();
 }
-    trouNoir.classList.remove('trou_noir_dragover')
+    trouNoir.classList.remove('trou_noir_dragover');
+    soleil.classList.remove('trou_noir_dragover');
 }
 
 
@@ -246,26 +249,43 @@ checkboxDone.addEventListener('click', function () {
 
 // LIGHT & DARK MODE 
 
-let toggleInput = document.querySelectorAll("#inputToggleMode, .circle");
-let background = document.querySelector(".background_toggle");
+// Récupération des elements du Dom qui vont devoir changer de styles
 let circle = document.querySelector(".circle");
-
-
 let canClick = true;
 let inputToggle = document.querySelector("#inputToggleMode");
 const canvasLight = document.getElementById('canvasLight');
-const textsLight = document.querySelectorAll('p, h1, li')
+const todoListBox = document.querySelectorAll('.box');
+const buttons = document.querySelectorAll('.manage_button, .add_task_button');
+const inputCheckbox = document.querySelectorAll('.add_task_input, .checkbox_container, .background_toggle');
+const soleil = document.querySelector('.soleil');
+
+// Déclanchement des qu'un changement se produit sur l'input
 inputToggle.addEventListener("change", function () {
   if (!canClick) return; // mise en place d'un setTimeout pour eviter les spam click et faire buger le code
 
   canClick = false;
   setTimeout(() => canClick = true, 1200);
-
   circle.classList.toggle("circle_click");
 
-  canvas.toggleAttribute('hidden'); //changement de canvas selon le mode dark / light
-  canvasLight.toggleAttribute('hidden');
+    canvas.classList.toggle('canvasLightAppear');   //changement de canvas selon le mode dark / light
+    canvasLight.classList.toggle('canvasLightAppear')
 
+    todoListBox.forEach(box => { // changement des différentes listes de tâches
+        box.classList.toggle('box_light');
+    });
+
+    buttons.forEach(button => { // changement des boutons
+        button.classList.toggle('manage_button_light');
+    });
+
+    inputCheckbox.forEach(element => { // changement de la checkbox et de l'input d'ajout d'elements
+        element.classList.toggle('background_checkbox_light');
+    })
+
+    trouNoir.classList.toggle('disapear'); // changement d'icone
+    soleil.classList.toggle('d-none');
+
+    deleteValidation.modal.classList.toggle('modal_light'); // changement du modal de suppréssion
 });
 
 
