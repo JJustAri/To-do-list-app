@@ -4,7 +4,7 @@ const STAR_MIN_SCALE = 0.2;
 const OVERFLOW_THRESHOLD = 50;
 const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
 
-const canvas = document.getElementById("canvasDark"),
+export const canvas = document.getElementById("canvasDark"),
   context = canvas.getContext("2d");
 
 let scale = 1, // device pixel ratio
