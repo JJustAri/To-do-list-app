@@ -267,8 +267,8 @@ inputToggle.addEventListener("change", function () {
   setTimeout(() => canClick = true, 1200);
   circle.classList.toggle("circle_click");
 
-    canvas.classList.toggle('canvasLightAppear');   //changement de canvas selon le mode dark / light
-    canvasLight.classList.toggle('canvasLightAppear')
+    canvas.classList.toggle('canvasAppear');   //changement de canvas selon le mode dark / light
+    canvasLight.classList.toggle('canvasAppear')
 
     todoListBox.forEach(box => { // changement des différentes listes de tâches
         box.classList.toggle('box_light');

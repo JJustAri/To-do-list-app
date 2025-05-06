@@ -1,8 +1,7 @@
 // Validation avant suppréssion
 const modal = document.getElementById('validateModal');
-const closeButton = document.getElementById('closeButton');
 const buttonYes = document.getElementById('validateModalYes');
-const buttonCancel = document.getElementById('validateModalNo');
+const closeButtons = document.querySelectorAll('[data-close-modal]');
 
 export async function validateDelete() {
 
@@ -15,24 +14,16 @@ export async function validateDelete() {
       
     });
 
-    buttonCancel.addEventListener('click', function () {
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
 
-      modal.setAttribute('hidden', '');
-      resolve(false);
-      
+        modal.setAttribute('hidden','');
+        resolve(false);
+      })
     });
-
-    closeButton.addEventListener('click', function() {
-
-      modal.setAttribute('hidden','');
-      resolve(false);
-      
-    })
-
-    
   })
 
   return await validatePromise;
 }
 
-export {modal,closeButton,buttonYes,buttonCancel}
+export {modal,buttonYes}
