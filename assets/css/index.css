@@ -244,14 +244,9 @@ canvas {
     transition: opacity 0.5s ease-in;
 }
 
-.canvasLightAppear {
+.canvasAppear {
     
     opacity: 1!important;
-}
-
-.canvasDarkDisapear {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
 }
 
 .background_toggle {
